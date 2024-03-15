@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  remote_debian:
+    build: .
+    container_name: remote_desktop
+    ports:
+      - "6901:6901"
+    volumes:
+      - "${VOLUMES_PATH}/home/Desktop:/headless/Desktop"
+      - "${VOLUMES_PATH}/home/persistent_data:/headless/user_data"
+    environment:
+      - VNC_PW=${VNC_PW}
+      - VNC_COL_DEPTH=${VNC_COL_DEPTH}
+      - VNC_RESOLUTION=${VNC_RESOLUTION}
+      - TZ=${TZ}
+    user: "1000:1000"
